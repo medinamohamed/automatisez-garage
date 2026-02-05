@@ -1,7 +1,8 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const apiKey = import.meta.env.VITE_API_KEY;
+const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
 export async function getAIDemoResponse(userInput: string, chatHistory: any[]) {
   const model = "gemini-3-flash-preview";
@@ -20,6 +21,11 @@ export async function getAIDemoResponse(userInput: string, chatHistory: any[]) {
   `;
 
   try {
+    if (!ai) {
+      console.error("Gemini API Key is missing. Please set VITE_API_KEY in your environment variables.");
+      return "I apologize, but I'm currently unable to connect to my brain. Please contact the administrator.";
+    }
+
     const chat = ai.chats.create({
       model,
       config: {
