@@ -1,0 +1,8 @@
+
+{
+  "name": "automatisez.ca AI Receptionist",
+  "description": "A premium AI-powered receptionist landing page for auto shops, featuring real-time demo capabilities and conversion-optimized sections.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
